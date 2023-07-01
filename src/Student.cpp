@@ -25,7 +25,7 @@ std::string Date::getBirth() const {
 // Student
 
 Student::Student(std::string name, int id, int gender)
-    : Person(name, id, gender) {
+    : Person(std::move(name), id, gender) {
     ++studentCount;
     _gpa = 0;
 }

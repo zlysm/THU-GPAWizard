@@ -34,14 +34,14 @@ Student Tom select courses:
 Input course number to select(0 to finish): 
 Course Genshin selected.
 
-Input course number to select, input 0 to finish: 
+Input course number to select(0 to finish): 
 Student Tom select courses finished.
 
 Student Merry select courses: 
 Input course number to select(0 to finish): 
 Course Genshin selected.
 
-Input course number to select, input 0 to finish: 
+Input course number to select(0 to finish): 
 Student Merry select courses finished.
 
 Student Minnie select courses: 
@@ -69,34 +69,33 @@ No student in Swinming course.
 
 Do you want to see all 2 students' info in Genshin course? (y/n)
 -------Undergraduate Student information-------
-          NAME:               Tom
-          ID:                 2021010552
-          GENDER:             Male
-          YEAR:               2021
+          Name:               Merry
+          ID:                 2022010123
+          Gender:             Female
+          BirthDate:          1/1/2000
+          Year:               2022
 -----------------------------------------------
 -------Undergraduate Student information-------
-          NAME:               Merry
-          ID:                 2022010123
-          GENDER:             Female
-          YEAR:               2022
+          Name:               Tom
+          ID:                 2021010552
+          Gender:             Male
+          BirthDate:          1/1/2000
+          Year:               2021
 -----------------------------------------------
 set grade for Genshin (course number: 30231234): 
-Please input the grade of Tom: 
 Please input the grade of Merry: 
+Please input the grade of Tom: 
 Grades have been set.
 
 All 4 courses' grades have been pushed to Academic Affairs.
-Do you want to see all courses' grades rank? (y/n)
+Do you want to see all courses' students rank? (y/n)
 No student in Electrics course.
-
 No student in Programming course.
-
 No student in Swinming course.
-
 ------------------Rank List------------------
           Course:             Genshin
-          Tom:                89
-          Merry:              78
+          Merry:              89
+          Tom:                78
 ---------------------------------------------
 
 ---------Stage 3: Grade reconsideration--------
@@ -105,9 +104,10 @@ Please input the student's id you want to query(0 to finish):
 -------------Student Course Report-------------
 Student:       Tom       2021010552
 Course Name    Course Number  Credits   GPA
-Genshin        30231234       5         3.6
-Total GPA: 3.60
+Genshin        30231234       5         3.0
+Total GPA: 3.00
 -----------------------------------------------
+
 Please input the course number you want to reconsider(0 to finish): 
 Please input the grade of Tom for Genshin: 
 Grade has been set.
@@ -121,6 +121,7 @@ Course Name    Course Number  Credits   GPA
 Genshin        30231234       5         4.0
 Total GPA: 4.00
 -----------------------------------------------
+
 Please input the student's id you want to query(0 to finish): 
 
 -------Stage 4: Show final course report-------
@@ -131,24 +132,29 @@ Course Name    Course Number  Credits   GPA
 Genshin        30231234       5         4.0
 Total GPA: 4.00
 -----------------------------------------------
+
 -------------Student Course Report-------------
 Student:       Merry     2022010123
 Course Name    Course Number  Credits   GPA
-Genshin        30231234       5         3.0
-Total GPA: 3.00
+Genshin        30231234       5         3.6
+Total GPA: 3.60
 -----------------------------------------------
+
 -------------Student Course Report-------------
 Student:       Minnie    985166
 Course Name    Course Number  Credits   GPA
 Total GPA: -nan
 -----------------------------------------------
+
 -------------Student Course Report-------------
 Student:       Alice     2019310567
 Course Name    Course Number  Credits   GPA
 Total GPA: -nan
 -----------------------------------------------
+
 -------------Student Course Report-------------
 Student:       Bob       2018210888
 Course Name    Course Number  Credits   GPA
 Total GPA: -nan
 -----------------------------------------------
+
