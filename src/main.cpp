@@ -68,6 +68,7 @@ int main() {
         auto student = findStudent(queryID);
         if (student == nullptr) {
             std::cout << "Student not found." << std::endl;
+            std::cout << "Please input the student's id you want to query(0 to finish): " << std::endl;
             continue;
         }
 
@@ -85,6 +86,7 @@ int main() {
             auto course = findCourse(courseNumber);
             if (course == nullptr) {
                 std::cout << "Course not found." << std::endl;
+                std::cout << "Please input the course number you want to reconsider(0 to finish): " << std::endl;
                 continue;
             }
 
