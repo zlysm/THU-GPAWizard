@@ -1,15 +1,36 @@
 #include "Student.hpp"
 
+// Person
+
+Person::Person(std::string name, int id, int gender)
+    : _name(std::move(name)), _id(id), _gender(gender) {}
+
+int Person::getID() const { return _id; }
+
+const std::string& Person::getName() const { return _name; }
+
+std::string Person::getGender() const {
+    return _gender == 1 ? "Male" : "Female";
+}
+
+// Date
+
+Date::Date(int year, int month, int day)
+    : _year(year), _month(month), _day(day) {}
+
+std::string Date::getBirth() const {
+    return std::to_string(_month) + "/" + std::to_string(_day) + "/" + std::to_string(_year);
+}
+
 // Student
+
 Student::Student(std::string name, int id, int gender)
-    : _name(std::move(name)), _id(id), _gender(gender) {
+    : Person(name, id, gender) {
     ++studentCount;
     _gpa = 0;
 }
 
-Student::~Student() {
-    --studentCount;
-}
+Student::~Student() { --studentCount; }
 
 void Student::selectCourse(const CourseInfo& course) {
     _courses.push_back(course);
@@ -44,25 +65,11 @@ void Student::showCourseReport() {
               << std::endl;
 }
 
-double Student::getGPA() const {
-    return _gpa;
-}
+double Student::getGPA() const { return _gpa; }
 
-int Student::getStudentCount() {
-    return studentCount;
-}
+int Student::getStudentCount() { return studentCount; }
 
-int Student::getID() const {
-    return _id;
-}
-
-const std::string& Student::getName() const {
-    return _name;
-}
-
-bool Student::operator<(const Student& stu) const {
-    return _gpa < stu._gpa;
-}
+bool Student::operator<(const Student& stu) const { return _gpa < stu._gpa; }
 
 inline double Student::grade2GPA(double grade) {
     if (grade >= 90)
@@ -88,38 +95,37 @@ inline double Student::grade2GPA(double grade) {
 }
 
 // Undergraduate
-Undergraduate::Undergraduate(const std::string& name, int id, int gender, int year = 2000)
-    : Student(name, id, gender), _year(year) {}
 
-int Undergraduate::getYear() const {
-    return _year;
-}
+Undergraduate::Undergraduate(const std::string& name, int id, int gender, int startYear = 2000)
+    : Student(name, id, gender), _startYear(startYear) {}
+
+int Undergraduate::getStartYear() const { return _startYear; }
 
 void Undergraduate::showInfo() const {
     std::cout << "-------Undergraduate Student information-------" << std::endl;
     std::cout << std::left;
-    std::cout << std::setw(30) << "          NAME: " << _name << std::endl;
+    std::cout << std::setw(30) << "          Name: " << _name << std::endl;
     std::cout << std::setw(30) << "          ID: " << _id << std::endl;
-    std::cout << std::setw(30) << "          GENDER: " << (_gender == 1 ? "Male" : "Female") << std::endl;
-    std::cout << std::setw(30) << "          YEAR: " << _year << std::endl;
+    std::cout << std::setw(30) << "          Gender: " << getGender() << std::endl;
+    std::cout << std::setw(30) << "          BirthDate: " << getBirth() << std::endl;
+    std::cout << std::setw(30) << "          Year: " << _startYear << std::endl;
     std::cout << "-----------------------------------------------" << std::endl;
 }
 
 // Graduate
-Graduate::Graduate(const std::string& name, int id, int gender, std::string supervisor, int year = 2000)
-    : Student(name, id, gender), _supervisor(std::move(supervisor)), _year(year) {}
 
-const std::string& Graduate::getSupervisor() const {
-    return _supervisor;
-}
+Graduate::Graduate(const std::string& name, int id, int gender, std::string supervisor)
+    : Student(name, id, gender), _supervisor(std::move(supervisor)) {}
+
+const std::string& Graduate::getSupervisor() const { return _supervisor; }
 
 void Graduate::showInfo() const {
     std::cout << "----------Graduate Student information---------" << std::endl;
     std::cout << std::left;
-    std::cout << std::setw(30) << "          NAME: " << _name << std::endl;
+    std::cout << std::setw(30) << "          Name: " << _name << std::endl;
     std::cout << std::setw(30) << "          ID: " << _id << std::endl;
-    std::cout << std::setw(30) << "          GENDER: " << (_gender == 1 ? "Male" : "Female") << std::endl;
+    std::cout << std::setw(30) << "          Gender: " << getGender() << std::endl;
+    std::cout << std::setw(30) << "          BirthDate: " << getBirth() << std::endl;
     std::cout << std::setw(30) << "          SUPERVISOR: " << _supervisor << std::endl;
-    std::cout << std::setw(30) << "          YEAR: " << _year << std::endl;
     std::cout << "-----------------------------------------------" << std::endl;
 }

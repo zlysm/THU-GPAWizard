@@ -3,38 +3,60 @@
 
 #include "Course.hpp"
 
-class Student {
+class Person {
+   public:
+    Person(std::string name, int id, int gender);
+
+    int getID() const;
+
+    const std::string &getName() const;
+
+    std::string getGender() const;
+
+   protected:
+    std::string _name;
+    int _id;
+    int _gender;  // 1 for male, 2 for female
+};
+
+class Date {
+   public:
+    explicit Date(int year = 2000, int month = 1, int day = 1);
+
+    std::string getBirth() const;
+
+   protected:
+    int _year;
+    int _month;
+    int _day;
+};
+
+class Student : public Person, public Date {
    public:
     Student(std::string name, int id, int gender);
 
-    ~Student();
+    virtual ~Student();
 
     void selectCourse(const CourseInfo &course);
 
-    virtual void showInfo() const = 0;
+    void calculateGPA();
 
     void showCourseReport();
 
-    // get functions
     double getGPA() const;
-    int getID() const;
-    const std::string &getName() const;
+
     static int getStudentCount();
+
+    virtual void showInfo() const = 0;
 
     bool operator<(const Student &stu) const;
 
    protected:
-    static int studentCount;
-    std::string _name;
-    int _id;
-    int _gender;  // 1 for male, 2 for female
-
     std::vector<CourseInfo> _courses;
     std::unordered_map<int, double> _courseGrades;
     double _gpa;
 
-    void calculateGPA();
-
+    static int studentCount;
     friend class GradeManager;
 
    private:
@@ -43,19 +65,19 @@ class Student {
 
 class Undergraduate : public Student {
    public:
-    Undergraduate(const std::string &name, int id, int gender, int year);
+    Undergraduate(const std::string &name, int id, int gender, int startYear);
 
-    int getYear() const;
+    int getStartYear() const;
 
     void showInfo() const override;
 
    private:
-    int _year;
+    int _startYear;
 };
 
 class Graduate : public Student {
    public:
-    Graduate(const std::string &name, int id, int gender, std::string supervisor, int year);
+    Graduate(const std::string &name, int id, int gender, std::string supervisor);
 
     const std::string &getSupervisor() const;
 
@@ -63,7 +85,6 @@ class Graduate : public Student {
 
    private:
     std::string _supervisor;
-    int _year;
 };
 
 #endif  // STUDENT_HPP
