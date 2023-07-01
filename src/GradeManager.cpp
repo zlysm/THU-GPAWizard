@@ -25,7 +25,7 @@ void GradeManager::studentSelectCourse() {
                     break;
                 }
             if (selected) {
-                std::cout << "Input course number to select, input 0 to finish: " << std::endl;
+                std::cout << "Input course number to select(0 to finish): " << std::endl;
                 continue;
             }
 
@@ -42,7 +42,7 @@ void GradeManager::studentSelectCourse() {
 
             if (!found)
                 std::cout << "Course not found." << std::endl;
-            std::cout << "Input course number to select, input 0 to finish: " << std::endl;
+            std::cout << "Input course number to select(0 to finish): " << std::endl;
         }
 
         std::cout << "Student " << student->getName() << " select courses finished." << std::endl

@@ -13,16 +13,17 @@ Student::~Student() {
 
 void Student::selectCourse(const CourseInfo& course) {
     _courses.push_back(course);
+    _courseGrades[course.number] = 0;
 }
 
 void Student::calculateGPA() {
     double sum = 0;
-    int credits = 0;
+    int totalCredits = 0;
     for (const auto& course : _courses) {
         sum += grade2GPA(_courseGrades.at(course.number)) * course.credits;
-        credits += course.credits;
+        totalCredits += course.credits;
     }
-    _gpa = sum / credits;
+    _gpa = sum / totalCredits;
 }
 
 void Student::showCourseReport() {
@@ -39,7 +40,8 @@ void Student::showCourseReport() {
                   << grade2GPA(_courseGrades.at(course.number)) << std::endl;
 
     std::cout << "Total GPA: " << std::setprecision(2) << _gpa << std::endl;
-    std::cout << "-----------------------------------------------" << std::endl;
+    std::cout << "-----------------------------------------------" << std::endl
+              << std::endl;
 }
 
 double Student::getGPA() const {

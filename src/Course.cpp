@@ -26,7 +26,7 @@ void Course::setGrade() {
 
     std::cout << "set grade for " << _name << " (course number: " << _number << "): " << std::endl;
     for (auto &_student : _students) {
-        std::cout << "Please input the grade of " << _student.first << ": " << std::endl;
+        std::cout << "Please input the grade of " << _student.second.first << ": " << std::endl;  // print student name
         double grade;
         std::cin >> grade;
         _student.second.second = grade;  // _students.secone = <name, grade>

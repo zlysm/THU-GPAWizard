@@ -45,7 +45,7 @@ int main() {
 
     std::cout << "All " << Course::getCourseCount()
               << " courses' grades have been pushed to Academic Affairs." << std::endl;
-    std::cout << "Do you want to see all courses' grades rank? (y/n)" << std::endl;
+    std::cout << "Do you want to see all courses' students rank? (y/n)" << std::endl;
     std::cin >> choice;
     if (choice == 'y' || choice == 'Y')
         for (auto& course : courses)
