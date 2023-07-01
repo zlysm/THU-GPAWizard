@@ -14,8 +14,7 @@ CourseInfo Course::getCourseInfo() const {
 }
 
 void Course::updateStudentList(int studentID, const std::string &studentName) {
-    _students.emplace_back(studentID, studentName);
-    _stuGrades[studentID] = 0;
+    _students[studentID] = {studentName, 0};
 }
 
 void Course::setGrade() {
@@ -26,45 +25,47 @@ void Course::setGrade() {
     }
 
     std::cout << "set grade for " << _name << " (course number: " << _number << "): " << std::endl;
-    for (const auto &student : _students) {
-        std::cout << "Please input the grade of " << student.second << ": " << std::endl;
+    for (auto &_student : _students) {
+        std::cout << "Please input the grade of " << _student.first << ": " << std::endl;
         double grade;
         std::cin >> grade;
-        _stuGrades[student.first] = grade;
+        _student.second.second = grade;  // _students.secone = <name, grade>
     }
 
     std::cout << "Grades have been set." << std::endl
               << std::endl;
 }
 
-void Course::setGrade(int studentID) {
-    for (auto &_student : _students)
-        if (_student.first == studentID) {
-            std::cout << "Please input the grade of " << _student.second
-                      << " for " << _name << ": " << std::endl;
-            double grade;
-            std::cin >> grade;
-            _stuGrades[studentID] = grade;
-            std::cout << "Grade has been set." << std::endl
-                      << std::endl;
-            return;
-        }
+bool Course::setGrade(int studentID) {
+    if (_students.find(studentID) == _students.end()) {
+        std::cout << "No student with id " << studentID << " in " << _name << " course." << std::endl;
+        return false;
+    }
+
+    std::cout << "Please input the grade of " << _students.at(studentID).first
+              << " for " << _name << ": " << std::endl;
+
+    double grade;
+    std::cin >> grade;
+    _students.at(studentID).second = grade;
+    std::cout << "Grade has been set." << std::endl
+              << std::endl;
+    return true;
 }
 
 void Course::showStudentsRankList() const {
     if (_students.empty()) {
-        std::cout << "No student in " << _name << " course." << std::endl
-                  << std::endl;
+        std::cout << "No student in " << _name << " course." << std::endl;
         return;
     }
 
-    std::vector<std::pair<std::string, double>> students;  // <name, grade>
+    std::vector<StudentInfo> students;  // <name, grade>
     students.reserve(_students.size());
     for (const auto &_student : _students)
-        students.emplace_back(_student.second, _stuGrades.at(_student.first));
+        students.emplace_back(_student.second.first, _student.second.second);
 
     std::sort(students.begin(), students.end(),
-              [](const std::pair<std::string, double> &a, const std::pair<std::string, double> &b) {
+              [](const StudentInfo &a, const StudentInfo &b) {
                   return a.second > b.second;
               });  // sort by grade
 

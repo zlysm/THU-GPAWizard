@@ -9,13 +9,12 @@
 #include <utility>
 #include <vector>
 
-struct CourseInfo {
+typedef struct {
     std::string name;
     int number, credits;
+} CourseInfo;
 
-    CourseInfo(std::string name, int number, int credits)
-        : name(std::move(name)), number(number), credits(credits) {}
-};
+using StudentInfo = std::pair<std::string, double>;
 
 class Course {
    public:
@@ -27,9 +26,9 @@ class Course {
 
     void updateStudentList(int studentID, const std::string& studentName);
 
-    void setGrade();
+    void setGrade();  // set grade for all students
 
-    void setGrade(int studentID);
+    bool setGrade(int studentID);  // set grade for a specific student, return false if student not found
 
     void showStudentsRankList() const;
 
@@ -43,8 +42,7 @@ class Course {
     int _credits;
     static int courseCount;
 
-    std::vector<std::pair<int, std::string>> _students;  // <id, name>
-    std::unordered_map<int, double> _stuGrades;          // <id, grade>
+    std::unordered_map<int, StudentInfo> _students;  // <id, <name, grade>>
 
     friend class GradeManager;
 };

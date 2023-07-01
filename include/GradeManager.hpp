@@ -15,7 +15,7 @@ class GradeManager {
 
     void pushGrade();  // when teacher set all course's grade, push it to students
 
-    void pushGrade(int courseNumber);  // modify a course's grade
+    bool pushGrade(int courseNumber);  // modify a course's grade
 
    private:
     std::vector<Student*> _students;

@@ -45,7 +45,8 @@ void GradeManager::studentSelectCourse() {
             std::cout << "Input course number to select, input 0 to finish: " << std::endl;
         }
 
-        std::cout << "Student " << student->getName() << " select courses finished." << std::endl << std::endl;
+        std::cout << "Student " << student->getName() << " select courses finished." << std::endl
+                  << std::endl;
     }
 }
 
@@ -57,7 +58,7 @@ void GradeManager::teacherSetGrade() {
         std::cin >> choice;
         if (choice == 'y' || choice == 'Y')
             for (const auto& courseStu : course->_students)  // for all students in this course
-                for (auto& student : _students)              // fine the student in all students
+                for (const auto& student : _students)        // fine the student in all students
                     if (student->getID() == courseStu.first) {
                         student->showInfo();
                         break;
@@ -67,25 +68,26 @@ void GradeManager::teacherSetGrade() {
 }
 
 void GradeManager::pushGrade() {
-    for (auto& course : _courses)                        // for all courses
-        for (const auto& courseStu : course->_students)  // for all students in this course
-            for (auto& student : _students)              // find the student in all students
-                if (student->getID() == courseStu.first)
-                    student->_courseGrades[course->_number] = course->_stuGrades.at(courseStu.first);  // push grade to student
+    for (const auto& course : _courses)                   // for all courses
+        for (const auto& courseStu : course->_students)   // for all students in this course
+            for (auto& student : _students)               // find the student in all students
+                if (student->getID() == courseStu.first)  // push grade to student
+                    student->_courseGrades[course->_number] = course->_students.at(courseStu.first).second;
 
     for (auto& student : _students)  // update all students' GPA
         student->calculateGPA();
 }
 
-void GradeManager::pushGrade(int courseNumber) {
-    for (auto& course : _courses)  // find the course
+bool GradeManager::pushGrade(int courseNumber) {
+    for (const auto& course : _courses)  // find the course
         if (course->_number == courseNumber) {
             for (const auto& courseStu : course->_students)  // for all students in this course
                 for (auto& student : _students)              // find the student in all students
                     if (student->getID() == courseStu.first) {
-                        student->_courseGrades[course->_number] = course->_stuGrades.at(courseStu.first);
+                        student->_courseGrades[courseNumber] = course->_students.at(courseStu.first).second;
                         student->calculateGPA();
                     }
-            return;
+            return true;
         }
+    return false;
 }
