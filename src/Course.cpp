@@ -24,9 +24,9 @@ void Course::setGrade() {
         return;
     }
 
-    std::cout << "set grade for " << _name << " (course number: " << _number << "): " << std::endl;
+    std::cout << "Set grade for " << _name << " (course number: " << _number << "): " << std::endl;
     for (auto &_student : _students) {
-        std::cout << "Please input the grade of " << _student.second.first << ": " << std::endl;  // print student name
+        std::cout << "Please input the grade of " << _student.second.first << ": ";  // print student name
         double grade;
         std::cin >> grade;
         _student.second.second = grade;  // _students.secone = <name, grade>
@@ -43,7 +43,7 @@ bool Course::setGrade(int studentID) {
     }
 
     std::cout << "Please input the grade of " << _students.at(studentID).first
-              << " for " << _name << ": " << std::endl;
+              << " for " << _name << ": ";
 
     double grade;
     std::cin >> grade;

@@ -44,7 +44,7 @@ void Student::calculateGPA() {
         sum += grade2GPA(_courseGrades.at(course.number)) * course.credits;
         totalCredits += course.credits;
     }
-    _gpa = sum / totalCredits;
+    _gpa = (sum == 0) ? 0 : (sum / totalCredits);  // avoid dividing by zero
 }
 
 void Student::showCourseReport() {
