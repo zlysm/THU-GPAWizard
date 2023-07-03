@@ -53,14 +53,14 @@ void Student::showCourseReport() {
     std::cout << std::setw(15) << "Student: " << std::setw(10) << _name << _id << std::endl;
     std::cout << std::setw(15) << "Course Name" << std::setw(15) << "Course Number"
               << std::setw(10) << "Credits"
-              << "GPA" << std::endl;
+              << "Grade" << std::endl;
 
     for (const auto& course : _courses)
         std::cout << std::setw(15) << course.name << std::setw(15) << course.number
                   << std::setw(10) << course.credits << std::setprecision(1) << std::fixed
                   << grade2GPA(_courseGrades.at(course.number)) << std::endl;
 
-    std::cout << "Total GPA: " << std::setprecision(2) << _gpa << std::endl;
+    std::cout << "GPA: " << std::setprecision(2) << _gpa << std::endl;
     std::cout << "-----------------------------------------------" << std::endl
               << std::endl;
 }
