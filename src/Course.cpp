@@ -1,5 +1,7 @@
 #include "Course.hpp"
 
+#include "IOUtils.hpp"
+
 Course::Course(std::string name, int number, int credits)
     : _name(std::move(name)), _number(number), _credits(credits) {
     ++courseCount;
@@ -26,9 +28,8 @@ void Course::setGrade() {
 
     std::cout << "Set grade for " << _name << " (course number: " << _number << "): " << std::endl;
     for (auto &_student : _students) {
-        std::cout << "Please input the grade of " << _student.second.first << ": ";  // print student name
-        double grade;
-        std::cin >> grade;
+        double grade = IO::checkInput<double>(
+            "Please input the grade of " + _student.second.first + ": ");
         _student.second.second = grade;  // _students.secone = <name, grade>
     }
 
@@ -41,13 +42,10 @@ bool Course::setGrade(int studentID) {
         std::cout << "No student with id " << studentID << " in " << _name << " course." << std::endl;
         return false;
     }
+    double grade = IO::checkInput<double>(
+        "Please input the grade of " + _students.at(studentID).first + " in " + _name + ": ");
 
-    std::cout << "Please input the grade of " << _students.at(studentID).first
-              << " for " << _name << ": ";
-
-    double grade;
-    std::cin >> grade;
-    _students.at(studentID).second = grade;
+    _students.at(studentID).second = grade;  // _students.secone = <name, grade>
     std::cout << "Grade has been set." << std::endl
               << std::endl;
     return true;
@@ -69,12 +67,12 @@ void Course::showStudentsRankList() const {
                   return a.second > b.second;
               });  // sort by grade
 
-    std::cout << "------------------Rank List------------------" << std::endl;
+    std::cout << "-------------------Rank List-------------------" << std::endl;
     std::cout << std::left;
     std::cout << std::setw(30) << "          Course: " << _name << std::endl;
     for (const auto &student : students)
         std::cout << std::setw(30) << "          " + student.first + ": " << student.second << std::endl;
-    std::cout << "---------------------------------------------" << std::endl;
+    std::cout << "-----------------------------------------------" << std::endl;
 }
 
 int Course::getCourseCount() {
