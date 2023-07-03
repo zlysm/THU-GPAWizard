@@ -1,6 +1,7 @@
 #ifndef GRADE_MANAGER_HPP
 #define GRADE_MANAGER_HPP
 
+#include "IOUtils.hpp"
 #include "Student.hpp"
 
 class GradeManager {

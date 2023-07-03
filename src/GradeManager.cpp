@@ -13,24 +13,22 @@ GradeManager::~GradeManager() {
 void GradeManager::studentSelectCourse() {
     for (auto& student : _students) {
         std::cout << "Student " << student->getName() << " select courses: " << std::endl;
-        std::cout << "Input course number to select(0 to finish): " << std::endl;
 
-        int courseNumber;
-        while (std::cin >> courseNumber && courseNumber != 0) {
-            bool selected = false;  // check if the course has been selected
+        const std::string prompt = "Input course number to select(0 to finish): ";
+
+        for (int courseNumber = IO::checkInput<int>(prompt); 0 != courseNumber;
+             courseNumber = IO::checkInput<int>(prompt)) {
+            bool selected = false;  // check if the course has already been selected
             for (const auto& course : student->_courses)
                 if (course.number == courseNumber) {
                     selected = true;
-                    std::cout << "Course " << course.name << " has already been selected!" << std::endl;
+                    std::cout << "Course " << course.name << " has already been selected." << std::endl;
                     break;
                 }
-            if (selected) {
-                std::cout << "Input course number to select(0 to finish): " << std::endl;
-                continue;
-            }
+            if (selected) continue;
 
             bool found = false;
-            for (const auto& course : _courses)  // find the course
+            for (const auto& course : _courses)
                 if (course->_number == courseNumber) {
                     found = true;
                     student->selectCourse(course->getCourseInfo());                   // push course to student
@@ -42,9 +40,7 @@ void GradeManager::studentSelectCourse() {
 
             if (!found)
                 std::cout << "Course not found." << std::endl;
-            std::cout << "Input course number to select(0 to finish): " << std::endl;
         }
-
         std::cout << "Student " << student->getName() << " select courses finished." << std::endl
                   << std::endl;
     }
@@ -52,11 +48,10 @@ void GradeManager::studentSelectCourse() {
 
 void GradeManager::teacherSetGrade() {
     for (auto& course : _courses) {
-        std::cout << "Do you want to see all " << course->_students.size() << " students' info in "
-                  << course->_name << " course? (y/n)" << std::endl;
-        char choice;
-        std::cin >> choice;
-        if (choice == 'y' || choice == 'Y')
+        const std::string prompt = "Do you want to see all " + std::to_string(course->_students.size()) +
+                                   " students' info in " + course->_name + " course? (y/n)";
+        char choice = IO::checkInput<char>(prompt);
+        if ('n' != choice && 'N' != choice)
             for (const auto& courseStu : course->_students)  // for all students in this course
                 for (const auto& student : _students)        // fine the student in all students
                     if (student->getID() == courseStu.first) {
