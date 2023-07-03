@@ -19,11 +19,11 @@ class GradeManager {
 
     bool pushGrade(int courseNumber);  // modify a course's grade
 
-    void saveStudents(std::vector<Student*> students, SortType type);  // save all students
+    void saveStudents(SortType type = SortType::NONE);  // save all students
 
-    bool saveStudents(std::vector<Student*> students, int studentID, SortType type);  // save a student's courses
+    bool saveStudents(int studentID, SortType type = SortType::NONE);  // save a student's courses
 
-    bool saveCourses(std::vector<Course*> courses, int courseID, SortType type);  // save a course's students
+    bool saveCourses(int courseID, SortType type = SortType::NONE);  // save a course's students
 
    private:
     std::vector<Student*> _students;

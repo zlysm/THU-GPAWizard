@@ -87,7 +87,8 @@ bool GradeManager::pushGrade(int courseNumber) {
     return false;
 }
 
-void GradeManager::saveStudents(std::vector<Student*> students, SortType type) {
+void GradeManager::saveStudents(SortType type) {
+    auto students = _students;
     std::ofstream fout("shared/StudentsInfo.csv", std::ios::trunc);
     if (!fout.is_open()) {
         std::cerr << "Error opening file StudentsInfo.csv" << std::endl;
@@ -124,10 +125,10 @@ void GradeManager::saveStudents(std::vector<Student*> students, SortType type) {
     std::cout << "Successfully saved students info to StudentsInfo.csv" << std::endl;
 }
 
-bool GradeManager::saveStudents(std::vector<Student*> students, int studentID, SortType type) {
+bool GradeManager::saveStudents(int studentID, SortType type) {
     Student* student = nullptr;
     bool found = false;
-    for (const auto& stu : students)
+    for (const auto& stu : _students)
         if (stu->getID() == studentID) {
             student = stu;
             found = true;
@@ -178,10 +179,10 @@ bool GradeManager::saveStudents(std::vector<Student*> students, int studentID, S
     return true;
 }
 
-bool GradeManager::saveCourses(std::vector<Course*> courses, int courseID, SortType type) {
+bool GradeManager::saveCourses(int courseID, SortType type) {
     Course* course = nullptr;
     bool found = false;
-    for (const auto& cou : courses)
+    for (const auto& cou : _courses)
         if (cou->_number == courseID) {
             course = cou;
             found = true;
