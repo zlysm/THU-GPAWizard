@@ -8,6 +8,11 @@
 #include "Student.hpp"
 
 namespace IO {
+typedef enum { NAME,
+               NUMBER,
+               GRADE,
+               NONE } SortType;
+
 void loadStudents(std::vector<Student*>& students, const std::string& filename);
 
 void loadCourses(std::vector<Course*>& courses, const std::string& filename);
@@ -23,7 +28,6 @@ T checkInput(const std::string& prompt) {
         std::cout << "Invalid input, please input again!" << std::endl
                   << prompt;
     }
-
     return input;
 }
 }  // namespace IO

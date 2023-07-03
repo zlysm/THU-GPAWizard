@@ -86,3 +86,149 @@ bool GradeManager::pushGrade(int courseNumber) {
         }
     return false;
 }
+
+void GradeManager::saveStudents(std::vector<Student*> students, SortType type) {
+    std::ofstream fout("StudentsInfo.csv", std::ios::trunc);
+    if (!fout.is_open()) {
+        std::cerr << "Error opening file StudentsInfo.csv" << std::endl;
+        exit(1);
+    }
+
+    switch (type) {
+        case SortType::NAME:
+            std::sort(students.begin(), students.end(), [](Student* a, Student* b) {
+                return a->getName() < b->getName();
+            });
+            break;
+        case SortType::NUMBER:
+            std::sort(students.begin(), students.end(), [](Student* a, Student* b) {
+                return a->getID() > b->getID();
+            });
+            break;
+        case SortType::GRADE:
+            std::sort(students.begin(), students.end(), [](Student* a, Student* b) {
+                return a->getGPA() > b->getGPA();
+            });
+            break;
+        case SortType::NONE:
+        default:
+            break;
+    }
+
+    fout << "Name,ID,Gender,Birth date,GPA" << std::endl;
+    for (const auto& student : students)
+        fout << student->getName() << "," << student->getID() << "," << student->getGender() << ","
+             << student->getBirth() << "," << student->getGPA() << std::endl;
+
+    fout.close();
+    std::cout << "Successfully saved students info to StudentsInfo.csv" << std::endl;
+}
+
+bool GradeManager::saveStudents(std::vector<Student*> students, int studentID, SortType type) {
+    Student* student = nullptr;
+    bool found = false;
+    for (const auto& stu : students)
+        if (stu->getID() == studentID) {
+            student = stu;
+            found = true;
+            break;
+        }
+    if (!found) return false;
+
+    std::ofstream fout(student->getName() + ".csv", std::ios::trunc);
+    if (!fout.is_open()) {
+        std::cerr << "Error opening file " << student->getName() << ".csv" << std::endl;
+        exit(1);
+    }
+
+    std::vector<std::pair<CourseInfo, double>> courses;  // <course info, grade>
+    courses.reserve(student->_courses.size());
+    for (const auto& stuCourse : student->_courses)
+        courses.emplace_back(stuCourse, student->_courseGrades.at(stuCourse.number));
+
+    switch (type) {
+        case SortType::NAME:
+            std::sort(courses.begin(), courses.end(), [](std::pair<CourseInfo, double> a, std::pair<CourseInfo, double> b) {
+                return a.first.name < b.first.name;
+            });
+            break;
+        case SortType::NUMBER:
+            std::sort(courses.begin(), courses.end(), [](std::pair<CourseInfo, double> a, std::pair<CourseInfo, double> b) {
+                return a.first.number > b.first.number;
+            });
+            break;
+        case SortType::GRADE:
+            std::sort(courses.begin(), courses.end(), [](std::pair<CourseInfo, double> a, std::pair<CourseInfo, double> b) {
+                return a.second > b.second;
+            });
+            break;
+        case SortType::NONE:
+        default:
+            break;
+    }
+
+    fout << "Name,Number,Credit,Grade,GPA" << std::endl;
+    for (const auto& course : courses)
+        fout << course.first.name << "," << course.first.number << "," << course.first.credits << ","
+             << course.second << "," << student->grade2GPA(course.second) << std::endl;
+
+    fout.close();
+    std::cout << "Successfully saved student " << student->getName() << "'s courses info to " << student->getName()
+              << ".csv" << std::endl;
+    return true;
+}
+
+bool GradeManager::saveCourses(std::vector<Course*> courses, int courseID, SortType type) {
+    Course* course = nullptr;
+    bool found = false;
+    for (const auto& cou : courses)
+        if (cou->_number == courseID) {
+            course = cou;
+            found = true;
+            break;
+        }
+    if (!found) return false;
+
+    std::ofstream fout(course->_name + ".csv", std::ios::trunc);
+    if (!fout.is_open()) {
+        std::cerr << "Error opening file " << course->_name << ".csv" << std::endl;
+        exit(1);
+    }
+
+    std::vector<std::pair<int, StudentInfo>> students;  // <student id, student info>
+    students.reserve(course->_students.size());
+    for (const auto& stu : course->_students)
+        students.emplace_back(stu.first, stu.second);
+
+    switch (type) {
+        case SortType::NAME:
+            std::sort(students.begin(), students.end(), [](std::pair<int, StudentInfo> a, std::pair<int, StudentInfo> b) {
+                return a.second.first < b.second.first;
+            });
+            break;
+        case SortType::NUMBER:
+            std::sort(students.begin(), students.end(), [](std::pair<int, StudentInfo> a, std::pair<int, StudentInfo> b) {
+                return a.first > b.first;
+            });
+            break;
+        case SortType::GRADE:
+            std::sort(students.begin(), students.end(), [](std::pair<int, StudentInfo> a, std::pair<int, StudentInfo> b) {
+                return a.second.second > b.second.second;
+            });
+            break;
+        case SortType::NONE:
+        default:
+            break;
+    }
+
+    fout << "Name,ID,Grade,GPA" << std::endl;
+    for (const auto& stu : students) {
+        double grade = course->_students.at(stu.first).second;
+        fout << stu.second.first << "," << stu.first << "," << grade << "," << Student::grade2GPA(grade) << std::endl;
+    }
+
+    fout.close();
+    std::cout << "Successfully saved course " << course->_name << "'s students info to " << course->_name
+              << ".csv" << std::endl;
+    return true;
+}
