@@ -88,7 +88,7 @@ bool GradeManager::pushGrade(int courseNumber) {
 }
 
 void GradeManager::saveStudents(std::vector<Student*> students, SortType type) {
-    std::ofstream fout("StudentsInfo.csv", std::ios::trunc);
+    std::ofstream fout("shared/StudentsInfo.csv", std::ios::trunc);
     if (!fout.is_open()) {
         std::cerr << "Error opening file StudentsInfo.csv" << std::endl;
         exit(1);
@@ -135,7 +135,7 @@ bool GradeManager::saveStudents(std::vector<Student*> students, int studentID, S
         }
     if (!found) return false;
 
-    std::ofstream fout(student->getName() + ".csv", std::ios::trunc);
+    std::ofstream fout("shared/" + student->getName() + ".csv", std::ios::trunc);
     if (!fout.is_open()) {
         std::cerr << "Error opening file " << student->getName() << ".csv" << std::endl;
         exit(1);
@@ -189,7 +189,7 @@ bool GradeManager::saveCourses(std::vector<Course*> courses, int courseID, SortT
         }
     if (!found) return false;
 
-    std::ofstream fout(course->_name + ".csv", std::ios::trunc);
+    std::ofstream fout("shared/" + course->_name + ".csv", std::ios::trunc);
     if (!fout.is_open()) {
         std::cerr << "Error opening file " << course->_name << ".csv" << std::endl;
         exit(1);
