@@ -1,16 +1,16 @@
-Successfully loaded 3 undergraduate students and 2 graduate students!
-Successfully loaded 4 courses!
+Successfully loaded 3 undergraduate students and 2 graduate students.
+Successfully loaded 4 courses.
 -------------Welcome to GPAWizard!-------------
 Stages:
 1. Student select courses
 2. Teacher set grades and push to Academic Affairs
-3. Grade reconsideration
+3. Grade query and reconsideration
 4. Show final course report
+5. Save Students and Courses
 
 --------Stage 1: Student select courses--------
 
-Do you want to see all 4 courses? (y/n)
-------------------Course Info------------------
+Do you want to see all 4 courses? (y/n)------------------Course Info------------------
           Name:               Electrics
           Number:             30230812
           Credits:            2
@@ -31,44 +31,33 @@ Do you want to see all 4 courses? (y/n)
           Credits:            5
 -----------------------------------------------
 Student Tom select courses: 
-Input course number to select(0 to finish): 
-Course Genshin selected.
+Input course number to select(0 to finish): Course Genshin selected.
 
-Input course number to select(0 to finish): 
-Student Tom select courses finished.
+Input course number to select(0 to finish): Student Tom select courses finished.
 
 Student Merry select courses: 
-Input course number to select(0 to finish): 
-Course Genshin selected.
+Input course number to select(0 to finish): Course Genshin selected.
 
-Input course number to select(0 to finish): 
-Student Merry select courses finished.
+Input course number to select(0 to finish): Student Merry select courses finished.
 
 Student Minnie select courses: 
-Input course number to select(0 to finish): 
-Student Minnie select courses finished.
+Input course number to select(0 to finish): Student Minnie select courses finished.
 
 Student Alice select courses: 
-Input course number to select(0 to finish): 
-Student Alice select courses finished.
+Input course number to select(0 to finish): Student Alice select courses finished.
 
 Student Bob select courses: 
-Input course number to select(0 to finish): 
-Student Bob select courses finished.
+Input course number to select(0 to finish): Student Bob select courses finished.
 
 ----------Stage 2: Teacher set grades----------
 
-Do you want to see all 0 students' info in Electrics course? (y/n)
-No student in Electrics course.
+Do you want to see all 0 students' info in Electrics course? (y/n)No student in Electrics course.
 
-Do you want to see all 0 students' info in Programming course? (y/n)
-No student in Programming course.
+Do you want to see all 0 students' info in Programming course? (y/n)No student in Programming course.
 
-Do you want to see all 0 students' info in Swinming course? (y/n)
-No student in Swinming course.
+Do you want to see all 0 students' info in Swinming course? (y/n)No student in Swinming course.
 
-Do you want to see all 2 students' info in Genshin course? (y/n)
--------Undergraduate Student information-------
+Do you want to see all 2 students' info in Genshin course? (y/n)-------Undergraduate Student information-------
           Name:               Merry
           ID:                 2022010123
           Gender:             Female
@@ -82,48 +71,34 @@ Do you want to see all 2 students' info in Genshin course? (y/n)
           BirthDate:          1/1/2000
           Year:               2021
 -----------------------------------------------
-set grade for Genshin (course number: 30231234): 
-Please input the grade of Merry: 
-Please input the grade of Tom: 
-Grades have been set.
+Set grade for Genshin (course number: 30231234): 
+Please input the grade of Merry: Please input the grade of Tom: Grades have been set.
 
 All 4 courses' grades have been pushed to Academic Affairs.
-Do you want to see all courses' students rank? (y/n)
-No student in Electrics course.
+Do you want to see all courses' students rank? (y/n)No student in Electrics course.
 No student in Programming course.
 No student in Swinming course.
-------------------Rank List------------------
+-------------------Rank List-------------------
           Course:             Genshin
           Merry:              89
           Tom:                78
----------------------------------------------
+-----------------------------------------------
 
----------Stage 3: Grade reconsideration--------
+-------Stage 3: Query and Reconsideration------
 
-Please input the student's id you want to query(0 to finish): 
--------------Student Course Report-------------
+Please input the student's id you want to query(0 to finish): -------------Student Course Report-------------
 Student:       Tom       2021010552
 Course Name    Course Number  Credits   GPA
 Genshin        30231234       5         3.0
 Total GPA: 3.00
 -----------------------------------------------
 
-Please input the course number you want to reconsider(0 to finish): 
-Please input the grade of Tom for Genshin: 
-Grade has been set.
+Please input the course number you want to reconsider(0 to finish): Please input the grade of Tom in Genshin: Grade has been set.
 
 Successfully pushed grade to Academic Affairs.
-Please input the course number you want to reconsider(0 to finish): 
-Student Tom's new course report: 
--------------Student Course Report-------------
-Student:       Tom       2021010552
-Course Name    Course Number  Credits   GPA
-Genshin        30231234       5         4.0
-Total GPA: 4.00
------------------------------------------------
+Please input the course number you want to reconsider(0 to finish): Student Tom reconsideration finished.
 
 Please input the student's id you want to query(0 to finish): 
-
 -------Stage 4: Show final course report-------
 
 -------------Student Course Report-------------
@@ -143,18 +118,40 @@ Total GPA: 3.60
 -------------Student Course Report-------------
 Student:       Minnie    985166
 Course Name    Course Number  Credits   GPA
-Total GPA: -nan
+Total GPA: 0.00
 -----------------------------------------------
 
 -------------Student Course Report-------------
 Student:       Alice     2019310567
 Course Name    Course Number  Credits   GPA
-Total GPA: -nan
+Total GPA: 0.00
 -----------------------------------------------
 
 -------------Student Course Report-------------
 Student:       Bob       2018210888
 Course Name    Course Number  Credits   GPA
-Total GPA: -nan
+Total GPA: 0.00
 -----------------------------------------------
 
+
+--------Stage 5: Save Students/Courses---------
+
+Do you want to save all 5 students? (y/n)Select the sorting method you want(default is 0): 
+1. Name
+2. ID
+3. GPA
+Successfully saved students info to StudentsInfo.csv
+
+Do you want to save a student's courses info? (y/n)Please input the student's id(0 to finish): Select the sorting method you want(default is 0): 
+1. Name
+2. ID
+3. GPA
+Successfully saved student Tom's courses info to Tom.csv
+
+Please input the student's id(0 to finish): Do you want to save a course's students info? (y/n)Please input the course number(0 to finish): Select the sorting method you want(default is 0): 
+1. Name
+2. ID
+3. GPA
+Successfully saved course Genshin's students info to Genshin.csv
+
+Please input the course number(0 to finish): ---------------Thanks for using!---------------
