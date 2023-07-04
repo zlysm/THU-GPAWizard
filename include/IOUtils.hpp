@@ -8,10 +8,10 @@
 #include "Student.hpp"
 
 namespace IO {
-typedef enum { NAME,
+typedef enum { NAME = 1,
                NUMBER,
                GRADE,
-               NONE } SortType;
+               NONE = 0 } SortType;
 
 void loadStudents(std::vector<Student*>& students, const std::string& filename);
 
