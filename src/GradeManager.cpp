@@ -149,17 +149,17 @@ bool GradeManager::saveStudents(int studentID, SortType type) {
 
     switch (type) {
         case SortType::NAME:
-            std::sort(courses.begin(), courses.end(), [](std::pair<CourseInfo, double> a, std::pair<CourseInfo, double> b) {
+            std::sort(courses.begin(), courses.end(), [](const std::pair<CourseInfo, double>& a, const std::pair<CourseInfo, double>& b) {
                 return a.first.name < b.first.name;
             });
             break;
         case SortType::NUMBER:
-            std::sort(courses.begin(), courses.end(), [](std::pair<CourseInfo, double> a, std::pair<CourseInfo, double> b) {
+            std::sort(courses.begin(), courses.end(), [](const std::pair<CourseInfo, double>& a, const std::pair<CourseInfo, double>& b) {
                 return a.first.number > b.first.number;
             });
             break;
         case SortType::GRADE:
-            std::sort(courses.begin(), courses.end(), [](std::pair<CourseInfo, double> a, std::pair<CourseInfo, double> b) {
+            std::sort(courses.begin(), courses.end(), [](const std::pair<CourseInfo, double>& a, const std::pair<CourseInfo, double>& b) {
                 return a.second > b.second;
             });
             break;
@@ -171,7 +171,7 @@ bool GradeManager::saveStudents(int studentID, SortType type) {
     fout << "Name,Number,Credit,Grade,GPA" << std::endl;
     for (const auto& course : courses)
         fout << course.first.name << "," << course.first.number << "," << course.first.credits << ","
-             << course.second << "," << student->grade2GPA(course.second) << std::endl;
+             << course.second << "," << Student::grade2GPA(course.second) << std::endl;
 
     fout.close();
     std::cout << "Successfully saved student " << student->getName() << "'s courses info to " << student->getName()
@@ -203,17 +203,17 @@ bool GradeManager::saveCourses(int courseID, SortType type) {
 
     switch (type) {
         case SortType::NAME:
-            std::sort(students.begin(), students.end(), [](std::pair<int, StudentInfo> a, std::pair<int, StudentInfo> b) {
+            std::sort(students.begin(), students.end(), [](const std::pair<int, StudentInfo>& a, const std::pair<int, StudentInfo>& b) {
                 return a.second.first < b.second.first;
             });
             break;
         case SortType::NUMBER:
-            std::sort(students.begin(), students.end(), [](std::pair<int, StudentInfo> a, std::pair<int, StudentInfo> b) {
+            std::sort(students.begin(), students.end(), [](const std::pair<int, StudentInfo>& a, const std::pair<int, StudentInfo>& b) {
                 return a.first > b.first;
             });
             break;
         case SortType::GRADE:
-            std::sort(students.begin(), students.end(), [](std::pair<int, StudentInfo> a, std::pair<int, StudentInfo> b) {
+            std::sort(students.begin(), students.end(), [](const std::pair<int, StudentInfo>& a, const std::pair<int, StudentInfo>& b) {
                 return a.second.second > b.second.second;
             });
             break;
