@@ -1,4 +1,4 @@
-Successfully loaded 3 undergraduate students and 2 graduate students.
+Successfully loaded 2 undergraduate students and 2 graduate students.
 Successfully loaded 4 courses.
 -------------Welcome to GPAWizard!-------------
 Stages:
@@ -50,22 +50,14 @@ Input course number to select(0 to finish): Course Swinming selected.
 
 Input course number to select(0 to finish): Student Merry select courses finished.
 
-Student Minnie select courses: 
-Input course number to select(0 to finish): Student Minnie select courses finished.
-
 Student Alice select courses: 
+Input course number to select(0 to finish): Student Alice select courses finished.
+
+Student Bob select courses: 
 Input course number to select(0 to finish): Course Swinming selected.
 
 Input course number to select(0 to finish): Course Genshin selected.
 
-Input course number to select(0 to finish): Student Alice select courses finished.
-
-Student Bob select courses: 
-Input course number to select(0 to finish): Course Programming selected.
-
-Input course number to select(0 to finish): Course Programming has already been selected.
-Input course number to select(0 to finish): Course not found.
-Input course number to select(0 to finish): Invalid input, please input again!
 Input course number to select(0 to finish): Student Bob select courses finished.
 
 ----------Stage 2: Teacher set grades----------
@@ -74,145 +66,141 @@ Do you want to see all 2 students' info in Electrics course? (y/n)-------Undergr
           Name:               Merry
           ID:                 2022010123
           Gender:             Female
-          BirthDate:          1/1/2000
+          BirthDate:          8/12/2004
           Year:               2022
 -----------------------------------------------
 -------Undergraduate Student information-------
           Name:               Tom
           ID:                 2021010552
           Gender:             Male
-          BirthDate:          1/1/2000
+          BirthDate:          9/7/2003
           Year:               2021
 -----------------------------------------------
 Set grade for Electrics (course number: 30230812): 
 Please input the grade of Merry: Please input the grade of Tom: Grades have been set.
 
-Do you want to see all 2 students' info in Programming course? (y/n)----------Graduate Student information---------
-          Name:               Bob
-          ID:                 2018210888
-          Gender:             Male
-          BirthDate:          1/1/2000
-          SUPERVISOR:         Sun
------------------------------------------------
--------Undergraduate Student information-------
+Do you want to see all 1 students' info in Programming course? (y/n)-------Undergraduate Student information-------
           Name:               Tom
           ID:                 2021010552
           Gender:             Male
-          BirthDate:          1/1/2000
+          BirthDate:          9/7/2003
           Year:               2021
 -----------------------------------------------
 Set grade for Programming (course number: 30230683): 
-Please input the grade of Bob: Please input the grade of Tom: Grades have been set.
+Please input the grade of Tom: Grades have been set.
 
 Do you want to see all 3 students' info in Swinming course? (y/n)----------Graduate Student information---------
-          Name:               Alice
-          ID:                 2019310567
-          Gender:             Female
-          BirthDate:          1/1/2000
-          SUPERVISOR:         Huang
+          Name:               Bob
+          ID:                 2018210888
+          Gender:             Male
+          BirthDate:          7/14/2000
+          Supervisor:         Sun
 -----------------------------------------------
 -------Undergraduate Student information-------
           Name:               Merry
           ID:                 2022010123
           Gender:             Female
-          BirthDate:          1/1/2000
+          BirthDate:          8/12/2004
           Year:               2022
 -----------------------------------------------
 -------Undergraduate Student information-------
           Name:               Tom
           ID:                 2021010552
           Gender:             Male
-          BirthDate:          1/1/2000
+          BirthDate:          9/7/2003
           Year:               2021
 -----------------------------------------------
 Set grade for Swinming (course number: 10720371): 
-Please input the grade of Alice: Please input the grade of Merry: Invalid input, please input again!
+Please input the grade of Bob: Invalid input, please input again!
+Please input the grade of Bob: Please input the grade of Merry: Invalid input, please input again!
 Please input the grade of Merry: Please input the grade of Tom: Grades have been set.
 
 Do you want to see all 3 students' info in Genshin course? (y/n)----------Graduate Student information---------
-          Name:               Alice
-          ID:                 2019310567
-          Gender:             Female
-          BirthDate:          1/1/2000
-          SUPERVISOR:         Huang
+          Name:               Bob
+          ID:                 2018210888
+          Gender:             Male
+          BirthDate:          7/14/2000
+          Supervisor:         Sun
 -----------------------------------------------
 -------Undergraduate Student information-------
           Name:               Merry
           ID:                 2022010123
           Gender:             Female
-          BirthDate:          1/1/2000
+          BirthDate:          8/12/2004
           Year:               2022
 -----------------------------------------------
 -------Undergraduate Student information-------
           Name:               Tom
           ID:                 2021010552
           Gender:             Male
-          BirthDate:          1/1/2000
+          BirthDate:          9/7/2003
           Year:               2021
 -----------------------------------------------
 Set grade for Genshin (course number: 30231234): 
-Please input the grade of Alice: Please input the grade of Merry: Please input the grade of Tom: Grades have been set.
+Please input the grade of Bob: Please input the grade of Merry: Please input the grade of Tom: Invalid input, please input again!
+Please input the grade of Tom: Grades have been set.
 
 All 4 courses' grades have been pushed to Academic Affairs.
 Do you want to see all courses' students rank? (y/n)-------------------Rank List-------------------
           Course:             Electrics
-          Tom:                91
-          Merry:              87
+          Tom:                3.02307e+07
+          Merry:              230683
 -----------------------------------------------
 -------------------Rank List-------------------
           Course:             Programming
-          Tom:                100
-          Bob:                63
+          Tom:                235678
 -----------------------------------------------
 -------------------Rank List-------------------
           Course:             Swinming
-          Merry:              100
-          Alice:              78
-          Tom:                59
+          Tom:                91
+          Merry:              87
+          Bob:                0
 -----------------------------------------------
 -------------------Rank List-------------------
           Course:             Genshin
-          Merry:              89
+          Merry:              100
           Tom:                78
-          Alice:              59
+          Bob:                63
 -----------------------------------------------
 
 -------Stage 3: Query and Reconsideration------
 
+Please input the student's id you want to query(0 to finish): Invalid input, please input again!
+Please input the student's id you want to query(0 to finish): Student not found.
+Please input the student's id you want to query(0 to finish): Student not found.
+Please input the student's id you want to query(0 to finish): Invalid input, please input again!
+Please input the student's id you want to query(0 to finish): Student not found.
+Please input the student's id you want to query(0 to finish): Student not found.
+Please input the student's id you want to query(0 to finish): Student not found.
+Please input the student's id you want to query(0 to finish): Invalid input, please input again!
 Please input the student's id you want to query(0 to finish): -------------Student Course Report-------------
 Student:       Tom       2021010552
 Course Name    Course Number  Credits   GPA
 Electrics      30230812       2         4.0
 Genshin        30231234       5         3.0
 Programming    30230683       3         4.0
-Swinming       10720371       1         0.0
-Total GPA: 3.18
+Swinming       10720371       1         4.0
+Total GPA: 3.55
 -----------------------------------------------
 
 Please input the course number you want to reconsider(0 to finish): Invalid input, please input again!
 Please input the course number you want to reconsider(0 to finish): Please input the grade of Tom in Swinming: Grade has been set.
-
 Successfully pushed grade to Academic Affairs.
+
 Please input the course number you want to reconsider(0 to finish): Student Tom reconsideration finished.
 
 Please input the student's id you want to query(0 to finish): -------------Student Course Report-------------
 Student:       Bob       2018210888
 Course Name    Course Number  Credits   GPA
-Programming    30230683       3         1.6
-Total GPA: 1.60
+Swinming       10720371       1         0.0
+Genshin        30231234       5         1.6
+Total GPA: 1.33
 -----------------------------------------------
 
 Please input the course number you want to reconsider(0 to finish): Student Bob reconsideration finished.
 
-Please input the student's id you want to query(0 to finish): -------------Student Course Report-------------
-Student:       Minnie    985166
-Course Name    Course Number  Credits   GPA
-Total GPA: 0.00
------------------------------------------------
-
-Please input the course number you want to reconsider(0 to finish): No student with id 985166 in Genshin course.
-Please input the course number you want to reconsider(0 to finish): Student Minnie reconsideration finished.
-
+Please input the student's id you want to query(0 to finish): Student not found.
+Please input the student's id you want to query(0 to finish): Student not found.
 Please input the student's id you want to query(0 to finish): 
 -------Stage 4: Show final course report-------
 
@@ -229,37 +217,35 @@ Total GPA: 3.30
 -------------Student Course Report-------------
 Student:       Merry     2022010123
 Course Name    Course Number  Credits   GPA
-Electrics      30230812       2         3.6
-Genshin        30231234       5         3.6
-Swinming       10720371       1         4.0
-Total GPA: 3.65
------------------------------------------------
-
--------------Student Course Report-------------
-Student:       Minnie    985166
-Course Name    Course Number  Credits   GPA
-Total GPA: 0.00
+Electrics      30230812       2         4.0
+Genshin        30231234       5         4.0
+Swinming       10720371       1         3.6
+Total GPA: 3.95
 -----------------------------------------------
 
 -------------Student Course Report-------------
 Student:       Alice     2019310567
 Course Name    Course Number  Credits   GPA
-Swinming       10720371       1         3.0
-Genshin        30231234       5         0.0
-Total GPA: 0.50
+Total GPA: 0.00
 -----------------------------------------------
 
 -------------Student Course Report-------------
 Student:       Bob       2018210888
 Course Name    Course Number  Credits   GPA
-Programming    30230683       3         1.6
-Total GPA: 1.60
+Swinming       10720371       1         0.0
+Genshin        30231234       5         1.6
+Total GPA: 1.33
 -----------------------------------------------
 
 
 --------Stage 5: Save Students/Courses---------
 
-Do you want to save all 5 students? (y/n)Select the sorting method you want(default is 0): 
+Do you want to save all 4 students? (y/n)Select the sorting method you want(default is 0): 
+1. Name
+2. ID
+3. GPA
+Invalid input, please input again!
+Select the sorting method you want(default is 0): 
 1. Name
 2. ID
 3. GPA
