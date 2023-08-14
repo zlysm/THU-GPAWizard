@@ -46,8 +46,7 @@ bool Course::setGrade(int studentID) {
         "Please input the grade of " + _students.at(studentID).first + " in " + _name + ": ");
 
     _students.at(studentID).second = grade;  // _students.secone = <name, grade>
-    std::cout << "Grade has been set." << std::endl
-              << std::endl;
+    std::cout << "Grade has been set." << std::endl;
     return true;
 }
 

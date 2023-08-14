@@ -88,7 +88,8 @@ int main() {
 
             if (course->setGrade(student->getID())) {
                 manager.pushGrade(courseNumber);
-                std::cout << "Successfully pushed grade to Academic Affairs." << std::endl;
+                std::cout << "Successfully pushed grade to Academic Affairs." << std::endl
+                          << std::endl;
             }
         }
         std::cout << "Student " << student->getName() << " reconsideration finished." << std::endl
