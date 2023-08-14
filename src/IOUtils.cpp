@@ -15,16 +15,16 @@ void loadStudents(std::vector<Student*>& students, const std::string& filename) 
     fin >> undergradCount >> gradCount;
     for (int i = 0; i < undergradCount; ++i) {
         std::string name;
-        int id, gender, year;
-        fin >> name >> id >> gender >> year;
-        students.push_back(new Undergraduate(name, id, gender, year));
+        int id, gender, year, month, day, startYear;
+        fin >> name >> id >> gender >> year >> month >> day >> startYear;
+        students.push_back(new Undergraduate(name, id, gender, year, month, day, startYear));
     }
 
     for (int i = 0; i < gradCount; ++i) {
         std::string name, supervisor;
-        int id, gender;
-        fin >> name >> id >> gender >> supervisor;
-        students.push_back(new Graduate(name, id, gender, supervisor));
+        int id, gender, year, month, day;
+        fin >> name >> id >> gender >> year >> month >> day >> supervisor;
+        students.push_back(new Graduate(name, id, gender, year, month, day, supervisor));
     }
     fin.close();
     std::cout << "Successfully loaded " << undergradCount << " undergraduate students and "

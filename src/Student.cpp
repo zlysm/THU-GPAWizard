@@ -24,8 +24,8 @@ std::string Date::getBirth() const {
 
 // Student
 
-Student::Student(std::string name, int id, int gender)
-    : Person(std::move(name), id, gender) {
+Student::Student(std::string name, int id, int gender, int year, int month, int day)
+    : Person(std::move(name), id, gender), Date(year, month, day) {
     ++studentCount;
     _gpa = 0;
 }
@@ -96,8 +96,10 @@ inline double Student::grade2GPA(double grade) {
 
 // Undergraduate
 
-Undergraduate::Undergraduate(const std::string& name, int id, int gender, int startYear = 2000)
-    : Student(name, id, gender), _startYear(startYear) {}
+Undergraduate::Undergraduate(std::string name, int id, int gender,
+                             int year, int month, int day,
+                             int startYear)
+    : Student(std::move(name), id, gender, year, month, day), _startYear(startYear) {}
 
 int Undergraduate::getStartYear() const { return _startYear; }
 
@@ -114,8 +116,10 @@ void Undergraduate::showInfo() const {
 
 // Graduate
 
-Graduate::Graduate(const std::string& name, int id, int gender, std::string supervisor)
-    : Student(name, id, gender), _supervisor(std::move(supervisor)) {}
+Graduate::Graduate(std::string name, int id, int gender,
+                   int year, int month, int day,
+                   std::string supervisor)
+    : Student(std::move(name), id, gender, year, month, day), _supervisor(std::move(supervisor)) {}
 
 const std::string& Graduate::getSupervisor() const { return _supervisor; }
 
@@ -126,6 +130,6 @@ void Graduate::showInfo() const {
     std::cout << std::setw(30) << "          ID: " << _id << std::endl;
     std::cout << std::setw(30) << "          Gender: " << getGender() << std::endl;
     std::cout << std::setw(30) << "          BirthDate: " << getBirth() << std::endl;
-    std::cout << std::setw(30) << "          SUPERVISOR: " << _supervisor << std::endl;
+    std::cout << std::setw(30) << "          Supervisor: " << _supervisor << std::endl;
     std::cout << "-----------------------------------------------" << std::endl;
 }

@@ -33,7 +33,7 @@ class Date {
 
 class Student : public Person, public Date {
    public:
-    Student(std::string name, int id, int gender);
+    Student(std::string name, int id, int gender, int year, int month, int day);
 
     virtual ~Student();
 
@@ -65,7 +65,7 @@ class Student : public Person, public Date {
 
 class Undergraduate : public Student {
    public:
-    Undergraduate(const std::string &name, int id, int gender, int startYear);
+    Undergraduate(std::string name, int id, int gender, int year, int month, int day, int startYear = 2000);
 
     int getStartYear() const;
 
@@ -77,7 +77,7 @@ class Undergraduate : public Student {
 
 class Graduate : public Student {
    public:
-    Graduate(const std::string &name, int id, int gender, std::string supervisor);
+    Graduate(std::string name, int id, int gender, int year, int month, int day, std::string supervisor);
 
     const std::string &getSupervisor() const;
 
