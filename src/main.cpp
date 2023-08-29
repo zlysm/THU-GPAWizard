@@ -79,7 +79,7 @@ int main() {
         student->showCourseReport();
 
         for (int courseNumber = IO::checkInput<int>(reconsiderPrompt); 0 != courseNumber;
-             courseNumber = IO::checkInput<int>(reconsiderPrompt)) {
+             courseNumber = IO::checkInput<int>(reconsiderPrompt)) {  // get course number, 0 to finish
             auto course = findCourse(courseNumber);
             if (!course) {
                 std::cout << "Course not found." << std::endl;
@@ -117,7 +117,7 @@ int main() {
     choice = IO::checkInput<char>("Do you want to save all " + std::to_string(Student::getStudentCount()) + " students? (y/n)");
     if ('n' != choice && 'N' != choice) {
         int sortType = IO::checkInput<int>(savePrompt);
-        manager.saveStudents(static_cast<IO::SortType>(sortType));
+        manager.saveStudents(static_cast<IO::SortType>(sortType));  // overload function, save all students
         std::cout << std::endl;
     }
 
@@ -125,7 +125,7 @@ int main() {
     if ('n' != choice && 'N' != choice) {
         const std::string studentPrompt = "Please input the student's id(0 to finish): ";
         for (int studentID = IO::checkInput<int>(studentPrompt); 0 != studentID;
-             studentID = IO::checkInput<int>(studentPrompt)) {
+             studentID = IO::checkInput<int>(studentPrompt)) {  // get student id, 0 to finish
             if (!findStudent(studentID)) {
                 std::cout << "Student not found." << std::endl;
                 continue;
@@ -140,7 +140,7 @@ int main() {
     if ('n' != choice && 'N' != choice) {
         const std::string coursePrompt = "Please input the course number(0 to finish): ";
         for (int courseNumber = IO::checkInput<int>(coursePrompt); 0 != courseNumber;
-             courseNumber = IO::checkInput<int>(coursePrompt)) {
+             courseNumber = IO::checkInput<int>(coursePrompt)) {  // get course number, 0 to finish
             if (!findCourse(courseNumber)) {
                 std::cout << "Course not found." << std::endl;
                 continue;
