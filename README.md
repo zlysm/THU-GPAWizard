@@ -148,7 +148,7 @@ G(Course 类) -.友元类 .- F(GradeManager 类)
 ## 3.2 功能模块设计
 
 ```mermaid
-flowchart
+graph
 start(开始选课) --> view{查看选\n课信息}
 view -- 是 --> y[打印查看课程信息]
 view -- 否--> n[通过 courses.txt 查看课程信息]
@@ -174,6 +174,19 @@ y1-->succ1[该课程赋分结束]
 succ1{展示\n所有课程\n学生排名}
 succ1--是-->show[打印成绩排名]-->tend(赋分结束)
 succ1--否-->tend
+```
+
+```mermaid
+graph
+re(成绩复议开始)-->input[输入待复议学生学号]
+input-->legal{该学生存在\n且未退出}
+legal--是-->id[输入待复议课程]-->legal2{学生已\n选择\n该课程}--是-->succ[教师重新打分,该课程复议成功]
+legal2--否-->fail[输入不合法]-->id
+succ-->id
+succ-->send[该学生复议结束]-->input
+legal--否-->input
+legal--否-->tend(复议环节结束)
+send-->tend
 ```
 
 
