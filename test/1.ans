@@ -31,12 +31,20 @@ Do you want to see all 4 courses? (y/n)------------------Course Info------------
           Credits:            5
 -----------------------------------------------
 Student Tom select courses: 
+Input course number to select(0 to finish): Course Electrics selected.
+
 Input course number to select(0 to finish): Course Genshin selected.
+
+Input course number to select(0 to finish): Course Programming selected.
+
+Input course number to select(0 to finish): Course Swinming selected.
 
 Input course number to select(0 to finish): Student Tom select courses finished.
 
 Student Merry select courses: 
 Input course number to select(0 to finish): Course Genshin selected.
+
+Input course number to select(0 to finish): Course Swinming selected.
 
 Input course number to select(0 to finish): Student Merry select courses finished.
 
@@ -44,11 +52,79 @@ Student Alice select courses:
 Input course number to select(0 to finish): Student Alice select courses finished.
 
 Student Bob select courses: 
+Input course number to select(0 to finish): Course Genshin selected.
+
+Input course number to select(0 to finish): Course Genshin has already been selected.
+Input course number to select(0 to finish): Course not found.
+Input course number to select(0 to finish): Invalid input, please input again!
+Input course number to select(0 to finish): Course Swinming selected.
+
+Input course number to select(0 to finish): Course Programming selected.
+
 Input course number to select(0 to finish): Student Bob select courses finished.
 
 ----------Stage 2: Teacher set grades----------
 
-Do you want to see all 2 students' info in Genshin course? (y/n)-------Undergraduate Student information-------
+Do you want to see all 1 students' info in Electrics course? (y/n)-------Undergraduate Student information-------
+          Name:               Tom
+          ID:                 2021010552
+          Gender:             Male
+          BirthDate:          9/7/2003
+          Year:               2021
+-----------------------------------------------
+Set grade for Electrics (course number: 30230812): 
+Please input the grade of Tom: Grades have been set.
+
+Do you want to see all 2 students' info in Programming course? (y/n)----------Graduate Student information---------
+          Name:               Bob
+          ID:                 2018210888
+          Gender:             Male
+          BirthDate:          7/14/2000
+          Supervisor:         Sun
+-----------------------------------------------
+-------Undergraduate Student information-------
+          Name:               Tom
+          ID:                 2021010552
+          Gender:             Male
+          BirthDate:          9/7/2003
+          Year:               2021
+-----------------------------------------------
+Set grade for Programming (course number: 30230683): 
+Please input the grade of Bob: Invalid input, please input again!
+Please input the grade of Bob: Please input the grade of Tom: Grades have been set.
+
+Do you want to see all 3 students' info in Swinming course? (y/n)----------Graduate Student information---------
+          Name:               Bob
+          ID:                 2018210888
+          Gender:             Male
+          BirthDate:          7/14/2000
+          Supervisor:         Sun
+-----------------------------------------------
+-------Undergraduate Student information-------
+          Name:               Merry
+          ID:                 2022010123
+          Gender:             Female
+          BirthDate:          8/12/2004
+          Year:               2022
+-----------------------------------------------
+-------Undergraduate Student information-------
+          Name:               Tom
+          ID:                 2021010552
+          Gender:             Male
+          BirthDate:          9/7/2003
+          Year:               2021
+-----------------------------------------------
+Set grade for Swinming (course number: 10720371): 
+Please input the grade of Bob: Please input the grade of Merry: Please input the grade of Tom: Grades have been set.
+
+Do you want to see all 3 students' info in Genshin course? (y/n)----------Graduate Student information---------
+          Name:               Bob
+          ID:                 2018210888
+          Gender:             Male
+          BirthDate:          7/14/2000
+          Supervisor:         Sun
+-----------------------------------------------
+-------Undergraduate Student information-------
           Name:               Merry
           ID:                 2022010123
           Gender:             Female
@@ -63,35 +139,47 @@ Do you want to see all 2 students' info in Genshin course? (y/n)-------Undergrad
           Year:               2021
 -----------------------------------------------
 Set grade for Genshin (course number: 30231234): 
-Please input the grade of Merry: Invalid input, please input again!
-Please input the grade of Merry: Invalid input, please input again!
-Please input the grade of Merry: Invalid input, please input again!
-Please input the grade of Merry: Invalid input, please input again!
-Please input the grade of Merry: Please input the grade of Tom: Grades have been set.
+Please input the grade of Bob: Please input the grade of Merry: Please input the grade of Tom: Grades have been set.
 
 All 4 courses' grades have been pushed to Academic Affairs.
-Do you want to see all courses' students rank? (y/n)No student in Electrics course.
-No student in Programming course.
-No student in Swinming course.
+Do you want to see all courses' students rank? (y/n)-------------------Rank List-------------------
+          Course:             Electrics
+          Tom:                86
+-----------------------------------------------
+-------------------Rank List-------------------
+          Course:             Programming
+          Tom:                92
+          Bob:                89.9
+-----------------------------------------------
+-------------------Rank List-------------------
+          Course:             Swinming
+          Bob:                88
+          Merry:              83
+          Tom:                76
+-----------------------------------------------
 -------------------Rank List-------------------
           Course:             Genshin
-          Merry:              89
-          Tom:                78
+          Tom:                90
+          Merry:              77
+          Bob:                59
 -----------------------------------------------
 
 -------Stage 3: Query and Reconsideration------
 
 Please input the student's id you want to query(0 to finish): -------------Student Course Report-------------
-Student:       Tom       2021010552
+Student:       Bob       2018210888
 Course Name    Course Number  Credits   GPA
-Genshin        30231234       5         3.0
-Total GPA: 3.00
+Genshin        30231234       5         0.0
+Swinming       10720371       1         3.6
+Programming    30230683       3         3.6
+Total GPA: 1.60
 -----------------------------------------------
 
-Please input the course number you want to reconsider(0 to finish): Please input the grade of Tom in Genshin: Grade has been set.
+Please input the course number you want to reconsider(0 to finish): Course not found.
+Please input the course number you want to reconsider(0 to finish): Please input the grade of Bob in Genshin: Grade has been set.
 Successfully pushed grade to Academic Affairs.
 
-Please input the course number you want to reconsider(0 to finish): Student Tom reconsideration finished.
+Please input the course number you want to reconsider(0 to finish): Student Bob reconsideration finished.
 
 Please input the student's id you want to query(0 to finish): 
 -------Stage 4: Show final course report-------
@@ -99,15 +187,19 @@ Please input the student's id you want to query(0 to finish):
 -------------Student Course Report-------------
 Student:       Tom       2021010552
 Course Name    Course Number  Credits   GPA
+Electrics      30230812       2         3.6
 Genshin        30231234       5         4.0
-Total GPA: 4.00
+Programming    30230683       3         4.0
+Swinming       10720371       1         2.6
+Total GPA: 3.80
 -----------------------------------------------
 
 -------------Student Course Report-------------
 Student:       Merry     2022010123
 Course Name    Course Number  Credits   GPA
-Genshin        30231234       5         3.6
-Total GPA: 3.60
+Genshin        30231234       5         3.0
+Swinming       10720371       1         3.3
+Total GPA: 3.05
 -----------------------------------------------
 
 -------------Student Course Report-------------
@@ -119,7 +211,10 @@ Total GPA: 0.00
 -------------Student Course Report-------------
 Student:       Bob       2018210888
 Course Name    Course Number  Credits   GPA
-Total GPA: 0.00
+Genshin        30231234       5         1.3
+Swinming       10720371       1         3.6
+Programming    30230683       3         3.6
+Total GPA: 2.32
 -----------------------------------------------
 
 
