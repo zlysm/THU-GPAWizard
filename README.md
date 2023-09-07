@@ -23,8 +23,6 @@ THU-GPAWizard
 │   ├── GradeManager.hpp
 │   ├── IOUtils.hpp
 │   └── Student.hpp
-├── LICENSE
-├── README.md
 ├── run.sh
 ├── shared
 │   ├── courses.txt
@@ -42,7 +40,7 @@ THU-GPAWizard
 │   └── 2.in
 └── test.sh
 
-4 directories, 21 files
+4 directories, 19 files
 ```
 
 ## 1.2 需求分析
@@ -94,17 +92,37 @@ F --- S(保存\n单门\n课程\n学生\n信息)
 
 ## 2.1 具体细节及输入要求
 
-在每个需要用户输入信息的地方，都设置了输入检查，若输入类型错误则会提示重新输入。
-
 - 选课阶段：学生根据展示的开设课程，输入 `8` 位课程号以进行选课，若该课程不存在或已经被选，则选课不成功，需要重新输入。每名学生选课完毕后输入 `0` 来结束。
 - 教师赋分：教师可查看选课学生信息，并提交总评分数，分数为双精度浮点类型。此时初步的成绩会提交给教务并推送给学生，随后可选择是否查看学生成绩排名。
 - 成绩复议：复议阶段会提示输入待复议学生的 `10` 位学号，若该学生不存在则需要重新输入。选择待复议学生后，会要求输入待复议课程的课程号，类似地，若该课程不存在则需要重新输入。随后由教师重新打分并提交，继续询问是否有课程需要替代，此时输入 `0` 可以结束当前学生的复议环节，再次输入 `0` 来结束整个复议流程。
 - 成绩展示：该环节为系统打印输出成绩单，无需输入。
 - 保存信息：该环节会提示是否保存相关信息，输入一个字节 `y` 或 `n` 来进行选择，判断逻辑为除了 `n` 或 `N` 之外均视为同意。
 
+
+
+在每个需要用户输入信息的地方，都设置了输入检查，若输入类型错误则会提示重新输入。原理是使用函数模板来简化类型检测，在每次输入不成功后会清空缓存区，并打印传入的提示语。
+
+```C++
+template <typename T>
+T checkInput(const std::string& prompt) {
+    T input;
+    std::cout << prompt;
+
+    while (!(std::cin >> input)) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Invalid input, please input again!" << std::endl
+                  << prompt;
+    }
+    return input;
+}
+```
+
 ## 2.2 初始信息要求
 
-初始的课程信息存储在 `courses.txt` ，第 `1` 行为课程数目 `N` ，后续 `N` 行为每种课程的信息，从前到后为课程名、课程号、学分，用空格分开。初始的学生信息存储在 `students.txt` ，第 `1` 行从前到后为本科生数目 `N` 和研究生数目 `M` ，第 `2` 行到第 `N+1` 行为本科生信息，从前到后为姓名、学号、性别(1为男性，2为女性~~，暂不支持Transgender~~)、出生年、月、日、入学年份；第 `N+2` 到第 `N+M+1` 行为研究生信息，从前到后为姓名、学号、性别、出生年、月、日、导师姓名，均以空格隔开。
+课程信息存储在 `courses.txt` 。第 `1` 行为课程数目 `N` ，后续 `N` 行为每种课程的信息，从前到后为课程名、课程号、学分，用空格分开。
+
+学生信息存储在 `students.txt` 。第 `1` 行从前到后为本科生数目 `N` 和研究生数目 `M` ，第 `2` 行到第 `N+1` 行为本科生信息，从前到后为姓名、学号、性别(1为男性，2为女性~~，暂不支持Transgender~~)、出生年、月、日、入学年份；第 `N+2` 到第 `N+M+1` 行为研究生信息，从前到后为姓名、学号、性别、出生年、月、日、导师姓名，均以空格隔开。
 
 以如下的 `students.txt` 为例：
 
@@ -120,7 +138,7 @@ Alice 2019310567 2 2001 6 30 Huang
 
 ## 3.1 类设计
 
-本管理系统拥有 `7` 个类，分别是 `Course`， `Person`， `Date`， `Student`， `Undergraduate`， `Graduate` 以及 `GradeManager` 类，其中 `Student` 类为抽象类。
+本管理系统拥有 `7` 个类，分别是 `Course`， `Person`， `Date`， `Student`， `Undergraduate`， `Graduate` 以及 `GradeManager` 类，其中 `Student` 类为**抽象类**。
 
 这七个类的关系如图所示：
 
@@ -141,57 +159,187 @@ G(Course 类) -.友元类 .- F(GradeManager 类)
 
 `GPAWizard`的七个类的UML图如下所示：
 
-![main](/home/zlysm/Code/C++/THU-GPAWizard/main.png)
+![uml-main](./pics/uml-main.png)
 
-![friend](/home/zlysm/Code/C++/THU-GPAWizard/friend.png)
+![uml-friend](./pics/uml-friend.png)
 
 ## 3.2 功能模块设计
 
-```mermaid
-graph
-start(开始选课) --> view{查看选\n课信息}
-view -- 是 --> y[打印查看课程信息]
-view -- 否--> n[通过 courses.txt 查看课程信息]
-y --> input[输入待选课程号]
-n-->input
-input-->legal{课程存在\n且未被选}
-legal--是-->succ[选课成功]
-legal--否-->fail[选课失败]
-succ-->continue{继续选课}
-fail-->continue
-continue-- 是 -->legal
-continue --否--> theend(该同学选课结束)
+- 选课阶段
 
-start1(教师赋分开始)-->view1{查看\n学生信息}
-view1--是-->y2[打印选课学生信息]
-y2-->input1[分别给各个学生打分,直至所有学生被赋分]
-view1--否-->input1
-input1-->legal1{成绩合法}
-legal1--是-->y1[该同学赋分成功]
-legal1--否-->n1[重新输入]-->legal1
-y1-->input1
-y1-->succ1[该课程赋分结束]
-succ1{展示\n所有课程\n学生排名}
-succ1--是-->show[打印成绩排名]-->tend(赋分结束)
-succ1--否-->tend
-```
+  ```mermaid
+  graph LR
+  start(开始选课)-->show(选择是否显示课程信息)-->n(不显示则查看 courses.txt 文档&#40不推荐&#41)
+  start-->select(输入课程号选课&#40输入 0 结束&#41)-->legal(课程不存在或已选过,需重新输入)
+  start-->change(当前同学选课结束,切换下一名学生)
+  ```
 
-```mermaid
-graph
-re(成绩复议开始)-->input[输入待复议学生学号]
-input-->legal{该学生存在\n且未退出}
-legal--是-->id[输入待复议课程]-->legal2{学生已\n选择\n该课程}--是-->succ[教师重新打分,该课程复议成功]
-legal2--否-->fail[输入不合法]-->id
-succ-->id
-succ-->send[该学生复议结束]-->input
-legal--否-->input
-legal--否-->tend(复议环节结束)
-send-->tend
-```
+- 教师赋分
 
+  ```mermaid
+  graph LR
+  start(教师开始打分)-->show(选择是否展示选课学生信息&#40推荐展示&#41)-->skip(若无学生选课则自动跳过)
+  start-->grade(依次给选课学生评分,数值需为浮点型百分制成绩)-->legal(输入不合法需重新输入)
+  start-->rank(选择是否显示该课程学生排名)
+  ```
 
+- 成绩复议
+
+  ```mermaid
+  graph LR
+  start(成绩复议开始)-->input(输入学生学号以开始复议&#40输入 0 结束&#41)-->legal(该学生不存在则需重新输入)
+  start-->input1(输入待复议课程号&#40输入 0 结束&#41)-->legal2(该课程不存在则需重新输入)
+  start-->grade(教师重新打分,然后返回上一步至结束)
+  start-->turn(该学生复议结束,切换下一名学生)
+  ```
+
+- 成绩展示
+
+  ```mermaid
+  graph LR
+  start(成绩展示)-->show(系统自动打印所有学生成绩单,计算 GPA)
+  ```
+
+- 保存信息
+
+  ```mermaid
+  graph LR
+  start(保存信息)-->stu(保存所有学生信息)-->type(选择排序方式:姓名,学号,GPA)
+  start-->stu_course(保存某个学生的课程信息)-->legal(该学生不存在则需重新输入)-->type
+  start-->course_stu(保存某门课程的学生信息)-->legal1(该课程不存在则需重新输入)-->type
+  ```
 
 # 4 系统调试
+
+## 4.1 编译
+
+本项目使用 `cmake` 进行编译，编译结果放在 `build` 文件夹下，`cmake` 版本如下：
+
+```bash
+$ cmake --version            
+cmake version 3.22.1
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+```
+
+使用时先新建 `build` 文件夹，再在其中编译。为了方便使用，我写了一个小脚本 `compile.sh` 来辅助编译：
+
+```bash
+#!/bin/sh
+if [ ! -d "build" ]; then
+    mkdir build
+fi
+cd build
+cmake ..
+make -j12
+```
+
+使用时运行其即可：
+
+```bash
+$ ./compile.sh
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/zlysm/Code/C++/THU-GPAWizard/build
+[ 50%] Building CXX object CMakeFiles/GPAWizard.dir/src/Course.cpp.o
+[ 50%] Building CXX object CMakeFiles/GPAWizard.dir/src/GradeManager.cpp.o
+[ 50%] Building CXX object CMakeFiles/GPAWizard.dir/src/main.cpp.o
+[ 66%] Building CXX object CMakeFiles/GPAWizard.dir/src/Student.cpp.o
+[ 83%] Building CXX object CMakeFiles/GPAWizard.dir/src/IOUtils.cpp.o
+[100%] Linking CXX executable GPAWizard
+[100%] Built target GPAWizard
+```
+
+## 4.2 运行
+
+运行 `run.sh` 即可启动本项目
+
+```bash
+#!/bin/sh
+./build/GPAWizard
+```
+
+## 4.3 测试
+
+本次测试选择 `test/1.in` 测试文件。
+
+为了方便测试，我写了 `test.sh` 脚本进行辅助。运行时在其后添加一个数字参数 ` *` ，即可使用输入输出重定向将 `*.in` 的测试结果保存至 `*.ans` ：
+
+```bash
+#!/bin/sh
+
+test_number="$1"
+input_file="test/${test_number}.in"
+output_file="test/${test_number}.ans"
+
+./run.sh <"$input_file" >"$output_file"
+```
+
+在这里我们手动进行输入（未列出部分重复环节，完整测试可使用测试文件）。
+
+![1](./pics/run-1.png)
+
+初始时可看到加载了四名学生以及四门课程，并提示了五个阶段。
+
+**在选课阶段**，我们选择查看课程信息：
+
+![2](./pics/run-2.png)
+
+接下来我们为 `Tom` 进行选课：
+
+![3](./pics/run-3.png)
+
+我们为 `Tom` 选择了`电电`，`原神`，`程设`以及`游泳课`，并输入 `0` 来结束他的选课过程。随后继续为其他同学选课，不再赘述。
+
+![4](./pics/run-4.png)
+
+注意到，当重复选课、课程号错误、输入不合法时，系统均能给出正确的提示。接下来我们进入到教师打分环节（本程序百分制与等级制对应关系与清华大学相同）。
+
+![5](./pics/run-5.png)
+
+我们先显示选课学生信息，然后为其打分。注意到，当输入字母（不合法数据）时，会提示重新输入。
+
+![6](./pics/run-6.png)
+
+所有课程打分完成后，可以展示各课程学生成绩排名。
+
+**接下来是复议环节。**`Bob`发现自己的`原神`课程挂科了，想要进行成绩复议：
+
+![7](./pics/run-7.png)
+
+老师重新给他打了 `61` 分的分数，我们选择课程复议环节结束（当输入错误的课程号时，会提示找不到该课程）。
+
+**进入到成绩展示环节**，系统会自动打印出所有同学的成绩单（`Alice` 为未选课同学）：
+
+![8](./pics/run-8.png)
+
+**进入到保存信息环节。**
+
+先按照GPA降序的方法，保存所有学生信息至 `shared/StudentsInfo.csv`：
+
+![9](./pics/run-9.png)
+
+我们再来按照课程号排序的方法保存 `Tom` 的课程信息（每个同学的课程信息文件名为 `学生姓名.csv`）：
+
+![10](./pics/run-10.png)
+
+最后，我们来按照姓名排序的方法，保存`原神`课程的学生信息：
+
+![11](./pics/run-11.png)
+
+至此，整个程序结束，谢谢使用！
 
 # 5 结果分析
 
