@@ -9,3 +9,5 @@ include_directories(include)
 aux_source_directory(src SRC_FILES)
 
 add_executable(GPAWizard ${SRC_FILES})
+
+file(COPY ${CMAKE_SOURCE_DIR}/shared DESTINATION ${CMAKE_BINARY_DIR})
